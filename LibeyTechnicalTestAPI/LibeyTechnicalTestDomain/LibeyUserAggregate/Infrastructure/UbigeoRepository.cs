@@ -16,17 +16,19 @@ namespace LibeyTechnicalTestDomain.LibeyUserAggregate.Infrastructure
         {
             _context = context;
         }
-        public List<UbigeoResponse> GetAllUbigeos()
+        public List<UbigeoResponse> GetAllUbigeos(string RegionCode, string ProvinceCode)
         {
-            var ubigeo = _context.Ubigeos.Select(ubigeo => new UbigeoResponse
-            {
-                UbigeoCode = ubigeo.RegionCode,
-                ProvinceCode = ubigeo.ProvinceCode,
-                RegionCode = ubigeo.RegionCode,
-                UbigeoDescription = ubigeo.UbigeoDescription,
-            }).ToList();
+            var ubigeos = _context.Ubigeos
+                .Where(ubigeo => ubigeo.RegionCode.StartsWith(RegionCode) && ubigeo.ProvinceCode.StartsWith(ProvinceCode))
+                .Select(ubigeo => new UbigeoResponse
+                {
+                    UbigeoCode = ubigeo.UbigeoCode,
+                    ProvinceCode = ubigeo.ProvinceCode,
+                    RegionCode = ubigeo.RegionCode,
+                    UbigeoDescription = ubigeo.UbigeoDescription
+                }).ToList();
 
-            return ubigeo;
+            return ubigeos;
         }
     }
 }

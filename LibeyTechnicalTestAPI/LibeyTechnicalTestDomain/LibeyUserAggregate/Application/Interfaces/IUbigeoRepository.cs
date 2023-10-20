@@ -5,6 +5,6 @@ namespace LibeyTechnicalTestDomain.LibeyUserAggregate.Application.Interfaces
 {
     public interface IUbigeoRepository
     {
-        List<UbigeoResponse> GetAllUbigeos();
+        List<UbigeoResponse> GetAllUbigeos(string RegionCode, string ProvinceCode);
     }
 }

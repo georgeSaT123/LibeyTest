@@ -15,9 +15,9 @@ namespace LibeyTechnicalTestAPI.Controllers.Ubigeo
         }
         [HttpGet]
         [Route("all")]
-        public IActionResult GetAllUbigeos()
+        public IActionResult GetAllUbigeos(string RegionCode, string ProvinceCode)
         {
-            var ubigeos = _aggregate.GetAllUbigeos();
+            var ubigeos = _aggregate.GetAllUbigeos(RegionCode, ProvinceCode);
             return Ok(ubigeos);
         }
     }

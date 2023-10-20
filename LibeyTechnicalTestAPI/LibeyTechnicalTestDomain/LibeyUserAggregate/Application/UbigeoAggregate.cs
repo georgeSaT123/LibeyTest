@@ -17,9 +17,9 @@ namespace LibeyTechnicalTestDomain.LibeyUserAggregate.Application
             _repository = repository;
         }
 
-        public List<UbigeoResponse> GetAllUbigeos()
+        public List<UbigeoResponse> GetAllUbigeos(string RegionCode, string ProvinceCode)
         {
-            return _repository.GetAllUbigeos();
+            return _repository.GetAllUbigeos(RegionCode, ProvinceCode);
         }
     }
 }
