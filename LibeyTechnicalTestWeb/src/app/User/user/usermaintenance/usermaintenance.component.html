@@ -83,14 +83,14 @@
 			<div class="row pb-2">
 				<div class="col-lg-2">Departamento</div>
 				<div class="col-lg-4">
-					<ng-select placeholder="Seleccione" class="ng-select-solid" name="region" required [(ngModel)]="user.region">
+					<ng-select placeholder="Seleccione" class="ng-select-solid" name="region" required [(ngModel)]="user.region" (change)="loadProvinces(user.region)">
 						<ng-option *ngFor="let region of regions" [value]="region.regionCode">{{ region.regionDescription }}</ng-option>
 					</ng-select>
 				</div>
 				<div class="col-lg-2">Provincia</div>
 				<div class="col-lg-4">
-					<ng-select placeholder="Seleccione" class="ng-select-solid" name="province" required>
-						<ng-option value="1">Lima</ng-option>
+					<ng-select placeholder="Seleccione" class="ng-select-solid" name="province" required [(ngModel)]="user.province">
+						<ng-option *ngFor="let province of provinces" [value]="province.provinceCode">{{ province.provinceDescription }}</ng-option>
 					</ng-select>
 				</div>
 			</div>
