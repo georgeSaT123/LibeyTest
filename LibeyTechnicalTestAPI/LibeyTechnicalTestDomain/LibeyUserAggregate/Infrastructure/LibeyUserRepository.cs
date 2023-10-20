@@ -35,6 +35,8 @@ namespace LibeyTechnicalTestDomain.LibeyUserAggregate.Infrastructure
         public List<LibeyUserResponse> GetAllLibeyUsers()
         {
             var q = from libeyUser in _context.LibeyUsers
+                    join documentType in _context.DocumentTypes on libeyUser.DocumentTypeId equals documentType.DocumentTypeId into documenttypeJoin
+                    from documentType in documenttypeJoin.DefaultIfEmpty()
                     join ubigeo in _context.Ubigeos on libeyUser.UbigeoCode equals ubigeo.UbigeoCode into ubigeoJoin
                     from ubigeo in ubigeoJoin.DefaultIfEmpty()
                     join province in _context.Provinces on ubigeo.ProvinceCode equals province.ProvinceCode into provinceJoin
@@ -46,7 +48,7 @@ namespace LibeyTechnicalTestDomain.LibeyUserAggregate.Infrastructure
                         DocumentNumber = libeyUser.DocumentNumber,
                         Active = libeyUser.Active,
                         Address = libeyUser.Address,
-                        DocumentTypeId = libeyUser.DocumentTypeId,
+                        DocumentTypeDescription = documentType.DocumentTypeDescription,
                         Email = libeyUser.Email,
                         FathersLastName = libeyUser.FathersLastName,
                         MothersLastName = libeyUser.MothersLastName,
@@ -64,6 +66,8 @@ namespace LibeyTechnicalTestDomain.LibeyUserAggregate.Infrastructure
         {
 
             var q = from libeyUser in _context.LibeyUsers
+                    join documentType in _context.DocumentTypes on libeyUser.DocumentTypeId equals documentType.DocumentTypeId into documenttypeJoin
+                    from documentType in documenttypeJoin.DefaultIfEmpty()
                     join ubigeo in _context.Ubigeos on libeyUser.UbigeoCode equals ubigeo.UbigeoCode into ubigeoJoin
                     from ubigeo in ubigeoJoin.DefaultIfEmpty()
                     join province in _context.Provinces on ubigeo.ProvinceCode equals province.ProvinceCode into provinceJoin
@@ -76,7 +80,7 @@ namespace LibeyTechnicalTestDomain.LibeyUserAggregate.Infrastructure
                         DocumentNumber = libeyUser.DocumentNumber,
                         Active = libeyUser.Active,
                         Address = libeyUser.Address,
-                        DocumentTypeId = libeyUser.DocumentTypeId,
+                        DocumentTypeDescription = documentType.DocumentTypeDescription,
                         Email = libeyUser.Email,
                         FathersLastName = libeyUser.FathersLastName,
                         MothersLastName = libeyUser.MothersLastName,
