@@ -6,10 +6,19 @@ import { LibeyUserService } from "src/app/core/service/libeyuser/libeyuser.servi
 	styleUrls: ["./usercards.component.css"],
 })
 export class UsercardsComponent implements OnInit {
+	users: any[] = [];
 	constructor(private libeyUserService: LibeyUserService) {}
 	ngOnInit(): void {
-		this.libeyUserService.Find("46257869").subscribe(response => {
+		this.libeyUserService.Find("U002").subscribe(response => {
 			console.log(response, "User");
+		});
+		this.getAll();		
+	}
+
+	public getAll(): void {
+		this.libeyUserService.getAllLibeyUsers().subscribe(response => {
+			this.users = response;
+			console.log(response, "AllUsers");
 		});
 	}
 }

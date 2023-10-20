@@ -19,7 +19,44 @@
 			<div class="card-footer">
 				<a class="btn btn-primary" style="width: 100%;">Ir</a>
 			</div>
-		</div>
-	
+		</div>	
 	</div>
+	<div class="container">
+		<table class="table table-stripped">
+		  <thead>
+			<tr>
+				<td>Numero de Documento</td>
+				<td>Tipo de  Documento</td>
+				<td>Nombre</td>
+				<td>Apellido Paterno</td>
+				<td>Apellido Materno</td>
+				<td>Direccion</td>
+				<td>Ubigeo</td>
+				<td>Celular</td>
+				<td>Correo</td>
+				<td>Contraseña</td>
+				<td>Estado</td>
+				<td></td>
+			</tr>
+		  </thead>
+		  <tbody>
+			<ng-container *ngFor="let user of users">
+				<tr>
+				  <td>{{ user.documentNumber }}</td>
+				  <td>{{ user.documentTypeId }}</td>
+				  <td>{{ user.name }}</td>
+				  <td>{{ user.fathersLastName }}</td>
+				  <td>{{ user.mothersLastName }}</td>
+				  <td>{{ user.address }}</td>
+				  <td>{{ user.ubigeoCode }}</td>
+				  <td>{{ user.phone }}</td>
+				  <td>{{ user.email }}</td>
+				  <td>{{ user.password }}</td>
+				  <td>{{ user.active }}</td>
+				  <td> <!-- Agrega opciones aquí si es necesario --> </td>
+				</tr>
+			  </ng-container>
+		  </tbody>
+		</table>
+	  </div>
 </div>
