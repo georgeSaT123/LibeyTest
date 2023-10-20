@@ -15,9 +15,9 @@ namespace LibeyTechnicalTestAPI.Controllers.Province
         }
         [HttpGet]
         [Route("all")]
-        public IActionResult GetAllProvinces()
+        public IActionResult GetAllProvinces(string regionCode)
         {
-            var provinces = _aggregate.GetAllProvinces();
+            var provinces = _aggregate.GetAllProvinces(regionCode);
             return Ok(provinces);
         }
     }

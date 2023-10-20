@@ -17,9 +17,9 @@ namespace LibeyTechnicalTestDomain.LibeyUserAggregate.Application
             _repository = repository;
         }
 
-        public List<ProvinceResponse> GetAllProvinces()
+        public List<ProvinceResponse> GetAllProvinces(string regionCode)
         {
-            return _repository.GetAllProvinces();
+            return _repository.GetAllProvinces(regionCode);
         }
     }
 }

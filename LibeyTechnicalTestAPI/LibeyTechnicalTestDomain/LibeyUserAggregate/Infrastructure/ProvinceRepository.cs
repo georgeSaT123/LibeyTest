@@ -16,9 +16,11 @@ namespace LibeyTechnicalTestDomain.LibeyUserAggregate.Infrastructure
         {
             _context = context;
         }
-        public List<ProvinceResponse> GetAllProvinces()
+        public List<ProvinceResponse> GetAllProvinces(string regionCode)
         {
-            var provinces = _context.Provinces.Select(province => new ProvinceResponse
+            var provinces = _context.Provinces
+            .Where(province => province.ProvinceCode.StartsWith(regionCode))
+            .Select(province => new ProvinceResponse
             {
                 ProvinceCode = province.ProvinceCode,
                 RegionCode = province.RegionCode,

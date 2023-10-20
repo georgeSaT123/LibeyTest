@@ -5,6 +5,6 @@ namespace LibeyTechnicalTestDomain.LibeyUserAggregate.Application.Interfaces
 {
     public interface IProvinceAggregate
     {
-        List<ProvinceResponse> GetAllProvinces();
+        List<ProvinceResponse> GetAllProvinces(string regionCode);
     }
 }
