@@ -89,7 +89,7 @@
 				</div>
 				<div class="col-lg-2">Provincia</div>
 				<div class="col-lg-4">
-					<ng-select placeholder="Seleccione" class="ng-select-solid" name="province" required [(ngModel)]="user.province">
+					<ng-select placeholder="Seleccione" class="ng-select-solid" name="province" required [(ngModel)]="user.province" (change)="loadUbigeos(user.region, user.province)">
 						<ng-option *ngFor="let province of provinces" [value]="province.provinceCode">{{ province.provinceDescription }}</ng-option>
 					</ng-select>
 				</div>
@@ -98,7 +98,7 @@
 				<div class="col-lg-2">Distrito</div>
 				<div class="col-lg-4">
 					<ng-select placeholder="Seleccione" class="ng-select-solid" name="ubigeoCode" required [(ngModel)]="user.ubigeoCode">
-						<ng-option value="1">Villa el salvador</ng-option>
+						<ng-option *ngFor="let ubigeo of ubigeos" [value]="ubigeo.ubigeoCode">{{ ubigeo.ubigeoDescription }}</ng-option>
 					</ng-select>
 				</div>
 				<div class="col-lg-2">Telefono</div>

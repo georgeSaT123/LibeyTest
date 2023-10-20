@@ -8,6 +8,8 @@ import { RegionService } from 'src/app/core/service/region/region.service';
 import { DocumenttypeService } from 'src/app/core/service/documenttype/documenttype.service';
 import { ProvinceService } from 'src/app/core/service/province/province.service';
 import { Province } from 'src/app/entities/province';
+import { UbigeoService } from 'src/app/core/service/ubigeo/ubigeo.service';
+import { Ubigeo } from 'src/app/entities/ubigeo';
 @Component({
   selector: 'app-usermaintenance',
   templateUrl: './usermaintenance.component.html',
@@ -18,13 +20,15 @@ export class UsermaintenanceComponent implements OnInit {
   public user: any = {};
   public regions: Region[] = [];
   public doc : DocTyp[] = [];
-  public provinces : Province[] = []
+  public provinces : Province[] = [];
+  public ubigeos : Ubigeo[] = [];
 
   constructor(
     private libeuserserv : LibeyUserService,
     private documentTypeServ : DocumenttypeService,
     private regionserv: RegionService,
-    private provinceserv: ProvinceService
+    private provinceserv: ProvinceService,
+    private ubigeoserv: UbigeoService
   ) { }
   ngOnInit(): void {
     this.getAllRegions();
@@ -60,7 +64,9 @@ export class UsermaintenanceComponent implements OnInit {
   }
 
   public clearForm(): void {
-    this.userForm.reset(); 
+    this.userForm.reset();
+    this.provinces = [];
+    this.ubigeos = [];
   }
 
 
@@ -68,6 +74,8 @@ export class UsermaintenanceComponent implements OnInit {
     this.documentTypeServ.getAllDocumentTypes().subscribe(documentType => {
       this.doc = documentType;
       console.log(documentType, "AllDocumentTypes");
+    }, error => {
+      console.error('Failed to retrieve DocumentTypes', error);
     });
   }
 
@@ -75,6 +83,8 @@ export class UsermaintenanceComponent implements OnInit {
     this.regionserv.getAllRegions().subscribe(region => {
       this.regions = region;
       console.log(region, "AllRegions");
+    }, error => {
+      console.error('Failed to retrieve Regions', error);
     });
   }
 
@@ -82,6 +92,23 @@ export class UsermaintenanceComponent implements OnInit {
     this.provinceserv.getAllProvinces(regionCode).subscribe(province => {
       this.provinces = province;
       console.log(province, "AllProvincesByRegions");
+      this.user.province = null;
+      this.user.ubigeoCode = null;
+      this.ubigeos = [];
+    }, error => {
+      console.error('Failed to retrieve Provinces', error);
+    });
+  }
+
+  public loadUbigeos(regionCode: string, provinceCode : string) : void {
+    this.ubigeoserv.getAllUbigeos(regionCode, provinceCode).subscribe(ubigeo => {
+      console.log(regionCode, "regionCode");
+      console.log(provinceCode, "provinceCode");
+      this.ubigeos = ubigeo;
+      console.log(ubigeo, "AllUbigeosByRegionsAndProvinces");
+      this.user.ubigeoCode = null;
+    }, error => {
+      console.error('Failed to retrieve Ubigeos', error);
     });
   }
 }
