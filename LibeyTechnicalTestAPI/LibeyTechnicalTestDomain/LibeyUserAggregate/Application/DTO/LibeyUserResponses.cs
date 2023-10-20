@@ -3,7 +3,7 @@
     public record LibeyUserResponse
     {
         public string DocumentNumber { get; init; }
-        public int DocumentTypeId { get; init; }
+        public string DocumentTypeDescription { get; init; }
         public string Name { get; init; }
         public string FathersLastName { get; init; }
         public string MothersLastName { get; init; }
