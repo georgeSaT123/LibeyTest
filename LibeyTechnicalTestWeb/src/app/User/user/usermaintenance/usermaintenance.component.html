@@ -60,13 +60,10 @@
 			<div class="row pb-2 pr-2">
 				<div class="col-lg-2">Tipo de documento</div>
 				<div class="col-lg-4">
-					<ng-select placeholder="Seleccione" class="ng-select-solid" name="documentTypeId" required
-        			[(ngModel)]="user.documentTypeId">
-						<ng-option value="1">Lima</ng-option>
+					<ng-select placeholder="Seleccione" class="ng-select-solid" name="documentTypeId" required [(ngModel)]="user.documentTypeId">
+						<ng-option *ngFor="let document of doc" [value]="document.documentTypeId">{{ document.documentTypeDescription}}</ng-option>
 					</ng-select>
-					<div *ngIf="!user.documentTypeId" style="color: red;">
-						Debe seleccionar un Tipo de Documento
-					</div>
+				
 				</div>
 				<div class="col-lg-2">Número de documento</div>
 				<div class="col-lg-4"><input type="text" class="form-control form-control-sm" [(ngModel)]="user.documentNumber" name="documentNumber" required/></div>
@@ -86,8 +83,8 @@
 			<div class="row pb-2">
 				<div class="col-lg-2">Departamento</div>
 				<div class="col-lg-4">
-					<ng-select placeholder="Seleccione" class="ng-select-solid" name="region" required>
-						<ng-option value="1">Lima</ng-option>
+					<ng-select placeholder="Seleccione" class="ng-select-solid" name="region" required [(ngModel)]="user.region">
+						<ng-option *ngFor="let region of regions" [value]="region.regionCode">{{ region.regionDescription }}</ng-option>
 					</ng-select>
 				</div>
 				<div class="col-lg-2">Provincia</div>
@@ -113,6 +110,6 @@
 				<div class="col-lg-2">Contraseña</div>
 				<div class="col-lg-4"><input type="password" class="form-control form-control-sm" [(ngModel)]="user.password" name="password" required/></div>
 			</div>
-		</div>
+		</div>	
 	</div>	
 </form>
