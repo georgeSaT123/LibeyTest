@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { LibeyUserService } from "src/app/core/service/libeyuser/libeyuser.service";
+
 @Component({
 	selector: "app-usercards",
 	templateUrl: "./usercards.component.html",
@@ -12,7 +13,7 @@ export class UsercardsComponent implements OnInit {
 		this.libeyUserService.Find("U002").subscribe(response => {
 			console.log(response, "User");
 		});
-		this.getAll();		
+		//this.getAll();		
 	}
 
 	public getAll(): void {
@@ -20,5 +21,9 @@ export class UsercardsComponent implements OnInit {
 			this.users = response;
 			console.log(response, "AllUsers");
 		});
+	}
+
+	public loadUsers(): void {
+		this.getAll();
 	}
 }

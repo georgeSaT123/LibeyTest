@@ -17,7 +17,7 @@
 				<p class="card-text">Buscar clientes ya registrados.</p>			
 			</div>
 			<div class="card-footer">
-				<a class="btn btn-primary" style="width: 100%;">Ir</a>
+				<a class="btn btn-primary" style="width: 100%;" (click)="loadUsers()">Ir</a>
 			</div>
 		</div>	
 	</div>
@@ -53,7 +53,18 @@
 				  <td>{{ user.email }}</td>
 				  <td>{{ user.password }}</td>
 				  <td>{{ user.active }}</td>
-				  <td> <!-- Agrega opciones aquí si es necesario --> </td>
+				  <td>
+					<div class="btn-group">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+						  
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						  <li><a class="dropdown-item" href="#">Actualizar</a></li>
+						  <li><a class="dropdown-item" href="#">Eliminar</a></li>
+						  <li><a class="dropdown-item" href="#"></a></li>
+						</ul>
+					  </div>
+				  </td>
 				</tr>
 			  </ng-container>
 		  </tbody>

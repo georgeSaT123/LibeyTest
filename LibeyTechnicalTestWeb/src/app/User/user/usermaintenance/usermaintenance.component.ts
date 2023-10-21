@@ -10,6 +10,7 @@ import { ProvinceService } from 'src/app/core/service/province/province.service'
 import { Province } from 'src/app/entities/province';
 import { UbigeoService } from 'src/app/core/service/ubigeo/ubigeo.service';
 import { Ubigeo } from 'src/app/entities/ubigeo';
+import { LibeyUserCommand } from 'src/app/entities/Request/libeyusercommand';
 @Component({
   selector: 'app-usermaintenance',
   templateUrl: './usermaintenance.component.html',
@@ -36,7 +37,7 @@ export class UsermaintenanceComponent implements OnInit {
   }
   public Submit(userForm: NgForm): void {
     const formValues = userForm.value;
-    const user = {
+    const user : LibeyUserCommand= {
       documentNumber: formValues.documentNumber,
       documentTypeId: formValues.documentTypeId,
       name: formValues.name,
@@ -49,11 +50,9 @@ export class UsermaintenanceComponent implements OnInit {
       password: formValues.password
     };
 
-    this.libeuserserv.createUser(user).subscribe(
-      (response) => {
+    this.libeuserserv.createUser(user).subscribe(response => {
         Swal.fire('Usuario creado correctamente', response, 'success');
-      },
-      (error) => {
+      },error => {
         Swal.fire('Error al crear usuario', error , 'error');
       }
     );
